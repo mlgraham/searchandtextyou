@@ -1,0 +1,23 @@
+
+<html><head>
+<style>*{font-family:sans-serif;}#map{width:95%;height:100%;margin:0 auto;}</style>
+<title>Search and Text You</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<meta http-equiv="refresh" content="30">
+</head><body>
+<div id='map'></div>
+<script type="text/javascript">
+var map = L.map('map').setView([34.74735199, -86.58167498], 20);
+L.tileLayer(
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+    {maxZoom: 18}).addTo(map);
+{% for each in victims %}
+var marker = L.marker([{{ each[2] }}, {{ each[3] }}],{title:'{{ each[4] }}'}).addTo(map);
+{% endfor %}
+</script>
+<h3>Records</h3>
+{% for each in victims %}
+{{ each[0] }}, {{ each[1] }}, {{ each[2] }}, {{ each[3] }}, {{ each[4] }}<br>
+{% endfor %}
+</body>
